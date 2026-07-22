@@ -1,3 +1,14 @@
+---
+name: doc-rule-resource
+description: プロジェクトで文書（特にガイド系ドキュメント）を作成する際に参照すべきルールを定義します。
+license: Proprietary
+compatibility: opencode
+metadata:
+  domain: doc
+  audience: project
+  output: rule
+---
+
 # Document Rules — プロジェクト共通の文書フォーマットルール
 
 このリソースは、本プロジェクトで文書（特にガイド系ドキュメント）を作成する際に参照すべきルールを定義します。
@@ -8,15 +19,15 @@
 
 | ファイル | 内容 | 優先度 |
 |---------|------|--------|
-| `docs/RULE.md` | プロジェクト全体のドキュメント構造・命名・運用ルール | 最優先 |
-| `docs/rules/RULE.md` | `docs/rules/` ディレクトリの定義とルールファイルのフォーマット | 高 |
-| `docs/rules/doc-guid-rule.md` | ガイド系ドキュメント（`*_guide.md` / `*_answers.md`）の具体的なフォーマットルール | 高（ガイド作成時） |
+| `doc/RULE.md` | プロジェクト全体のドキュメント構造・命名・運用ルール | 最優先 |
+| `doc/rules/RULE.md` | `doc/rules/` ディレクトリの定義とルールファイルのフォーマット | 高 |
+| `doc/rules/doc-guid-rule.md` | ガイド系ドキュメント（`*_guide.md` / `*_answers.md`）の具体的なフォーマットルール | 高（ガイド作成時） |
 
 ## ルールの優先順位
 
-1. `docs/RULE.md` — プロジェクト全体の共通ルール（最優先）
-2. `docs/rules/RULE.md` — ルール定義書のメタフォーマット
-3. `docs/rules/*-rule.md` — カテゴリ別の個別ルール（対象に応じて適用）
+1. `doc/RULE.md` — プロジェクト全体の共通ルール（最優先）
+2. `doc/rules/RULE.md` — ルール定義書のメタフォーマット
+3. `doc/rules/*-rule.md` — カテゴリ別の個別ルール（対象に応じて適用）
 
 ## 適用タイミング
 
