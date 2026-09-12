@@ -142,3 +142,35 @@ echo ""
 echo "ドキュメントプレビュー:"
 echo "  bash doc/serve.sh"
 ```
+
+## 生成後のフォルダ構成
+
+セットアップ完了後のプロジェクトは以下の構成になります。
+
+```text
+<PROJECT_NAME>/
+├── demo/                 # 演習用ディレクトリ（セットアップ時に自動作成）
+├── doc/                  # ドキュメント管理・プレビュー用
+├── project/              # 実装用ディレクトリ（初期状態は空）
+└── .opencode/skills/     # AIエージェント用スキル（選択したエージェント名で変化）
+```
+
+> **注意**: セットアップ時に `README.md`、`package.json`、`package-lock.json`、`.git` は削除されます。
+> この `README.md` はテンプレート用の手順書であり、生成後のプロジェクトには残りません。
+
+### 各フォルダの役割
+
+| フォルダ | 役割 | 補足 |
+|---------|------|------|
+| `demo/` | 演習用領域。`demo-exercise` スキルの演習で使用します。セットアップ時に空で作成されます | 成果物置き場ではなく、試行・練習用です |
+| `doc/` | 文書コンテンツとプレビューサーバーを格納します。`bash doc/serve.sh` でブラウザプレビューできます | 詳細なルールは `doc/RULE.md` を参照してください |
+| `doc/materials/` | すべての文書・画像コンテンツの格納場所です。`architecture/`、`design/`、`guide/`、`implementation/`、`verification/`、`review/`、`memo/` 等に分類して保存します | 新しいカテゴリ追加時は先に `doc/RULE.md` を更新します |
+| `doc/src/` | `materials/` をブラウザでプレビューするためのフロントエンドアプリ（`index.html`、`style.css`、`script.js`）です | 直接編集は原則不要です |
+| `doc/rules/` | 特定カテゴリの文書フォーマット定義（`*-rule.md`）を格納します | ルールの書き方自体は `doc/rules/RULE.md` に従います |
+| `doc/serve.js` / `doc/serve.sh` | プレビュー用開発サーバー本体と起動スクリプトです。`materials/` の変更を検出して SSE でブラウザに通知します | ポート番号はセットアップ時の質問3で自動設定されます |
+| `project/` | 成果物・実装コードの置き場です。初期状態は `.gitkeep` のみの空ディレクトリです | ここにアプリケーション本体を作成します |
+| `.opencode/skills/` （可変） | AIエージェント用ローカルスキル置き場です。セットアップ時の質問2で選択したエージェント名に応じたディレクトリ（例: `.opencode`、`.claude`、`.cursor` 等）の配下に `skills/` の内容がコピーされます | 元の `skills/` ディレクトリはコピー後に削除されます。「なし」を選択した場合は `skills/` のまま残ります |
+| `skills/doc/` | ドキュメント作成支援スキル（`architecture/`、`workflow/`、`rules/`、`ai-logging/`）です | 生成後は `<AGENT_DIR>/skills/doc/` に移動します |
+| `skills/project/_template/` | 新規スキル作成用のテンプレート置き場です | 新しいローカルスキルが必要になったら `new-skill` スキルの手順に従います |
+| `skills/demo/demo-exercise/` | `demo/` を使った演習用スキルです | 使い方の習得・試行用です |
+| `skills/new-skill/SKILL.md` | このプロジェクト専用の新規ローカルスキル作成手順です | 生成後は `<AGENT_DIR>/skills/new-skill/` に移動します |
