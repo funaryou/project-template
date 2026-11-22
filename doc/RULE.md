@@ -1,20 +1,19 @@
 # Documentation Rules
 
 ## 1. トップレベル構成
-```
+
+```text
 doc/
 ├── materials/     # 全コンテンツ（文書＋画像）
-├── src/           # materials のブラウザプレビューアプリ（フロントエンド）
-├── serve.js       # 開発サーバー（静的配信＋ファイル監視＋SSE）
-├── serve.sh       # 開発サーバー起動スクリプト
+├── rules/         # 文書フォーマットと命名規則
+├── RESTORE.md     # CLIが生成する復元手順
 ├── README.md
 └── RULE.md
 ```
 
-- `materials/` は、本プロジェクトのすべての文書・画像コンテンツを格納する。
-- `src/` は、`materials/` の内容をブラウザでプレビューするためのフロントエンドアプリケーション（`index.html`, `style.css`, `script.js`）。
-- `serve.js` は、Node.js/Bun で動作する開発サーバー。`src/` と `materials/` を配信し、`materials/` のファイル変更を検出して SSE でクライアントに通知する。
-- `serve.sh` は `serve.js` の起動ラッパー。`bash serve.sh` でサーバーが起動する。
+- `materials/` は、本プロジェクトのすべての文書・画像コンテンツを格納します。
+- MarkdownはエディタのプレビューまたはGitホスティング上で確認します。
+- `RESTORE.md` は `ptcli restore-doc` で更新します。手作業の補足は別の文書に記載します。
 
 ## 2. Scope and Purpose
 - `materials/architecture/` は、構造・責務分割・データ設計・技術方針を扱う。
@@ -56,19 +55,21 @@ doc/
 
 - この記載がないレビュー文書は未完了扱いとする。
 
-## 5. ファイル内ヘッダルール
-- 各文書の冒頭には、出典・用途を明記したコメントブロックを推奨する。
-- 例:
+## 5. Front matter（必須）
+- `materials/` 配下に作成する Markdown は、先頭に YAML 形式の front matter を必ず置く。
+- 必須フィールドは `title` / `description` / `author` / `date` / `version` / `status`。任意で `tags` を付ける。
+- `version` は引用符で囲み、`date` は `YYYY-MM-DD`、`status` は `draft` / `review` / `approved` / `archived` のいずれかとする。
+- `README.md` / `RULE.md` / `AGENTS.md` などの規約・入口ファイルには front matter を付けない。
+- 詳細は [`rules/md-rule.md`](./rules/md-rule.md) を正とする。
 
-```md
-> **出典**: Notion「<ページ名>」ページ
-> **用途**: <その文書の目的>
-```
-
-## 6. Naming and Operation
+## 6. ファイル命名
 - ファイル名は内容が判別できる具体名を使う。
+- 用途でサフィックスを分ける。AI が作成し人間が確認する文書は `<name>.hm.md`、AI 専用は `<name>.ai.md`、人間が作成・維持する文書は `<name>.md`。
+- ベース名は小文字 ASCII のケバブケースとし、スペース・大文字・日本語・アンダースコアを使わない。
+- `README` / `RULE` / `AGENTS` / `INDEX` / `SKILL` / `RESTORE` は大文字表記で固定し、新たに増やさない。
 - 既存構成に新しいカテゴリが必要な場合は、先に `RULE.md` を更新してからディレクトリを追加する。
 - 役割が重複する資料は作らず、必要に応じてリンク参照で集約する。
+- 詳細は [`rules/md-rule.md`](./rules/md-rule.md) を正とする。
 
 ## 7. .gitignore 適用範囲の保護
 - `.gitignore` に記載されているファイル・ディレクトリは、AI による編集・作成・変更の対象外とする。

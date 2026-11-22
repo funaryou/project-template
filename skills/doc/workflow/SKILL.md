@@ -17,7 +17,7 @@ metadata:
 
 ```
 <project-root>/
-├── docs/                   ← ドキュメント（ガイド・レビュー・手順書）
+├── doc/                    ← ドキュメント（ガイド・レビュー・手順書）
 ├── <app-source>/           ← アプリケーションのソースコード
 │   ├── src/
 │   │   ├── proxy.ts        ← ルーティング/保護レイヤー
@@ -32,27 +32,28 @@ metadata:
 
 ### 配置場所
 
-- すべてのドキュメントは `docs/` ディレクトリに置く
+- すべてのドキュメントは `doc/materials/` 配下に置く（詳細は `doc/RULE.md`）
 
 ### ファイル命名規則
 
+命名は `doc/rules/md-rule.md` に従う。ベース名は小文字 ASCII のケバブケースとし、AI が作成して人間が確認する文書には `.hm.md` を付ける。
+
 | 種類 | 命名パターン | 例 |
 |---|---|---|
-| 解説ガイド | `{topic}_guide.md` | `auth_guide.md` |
-| レビュー | `review_phase{N}_{topic}.md` | `review_phase3_auth.md` |
-| 手順書 | `phase{N}_{topic}_steps.md` | `phase4_route_guard_steps.md` |
+| 解説ガイド | `{topic}-guide.hm.md` | `auth-guide.hm.md` |
+| レビュー | `review-phase{N}-{topic}.hm.md` | `review-phase3-auth.hm.md` |
+| 手順書 | `phase{N}-{topic}-steps.hm.md` | `phase4-route-guard-steps.hm.md` |
 
-### バージョン番号
+### メタデータ
 
-- 各ドキュメントの h1 末尾にバージョン番号 `[#N]` を付ける
-- 内容を更新したらインクリメントする
+- 各ドキュメントの先頭に `doc/rules/md-rule.md` の front matter を付ける
+- バージョンは H1 ではなく front matter の `version` で管理し、更新時にインクリメントする
 
 ## ドキュメント更新時の手順
 
-1. `docs/` 配下の md ファイルを編集する
-2. h1 のバージョン番号をインクリメントする
+1. `doc/materials/` 配下の md ファイルを編集する
+2. front matter の `version` と `date` を更新する
 3. 関連する INDEX.md があれば更新する
-4. プレビューサーバーで表示を確認する（`bash docs/serve.sh`）
 
 ## コーディング規約
 

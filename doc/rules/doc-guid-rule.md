@@ -2,6 +2,7 @@
 
 > **目的**: 実装ドキュメントを「答えを教える」から「考えながら学べる教科書」に変換するためのルール集
 > **対象**: このリポジトリでガイド系ドキュメントを書くすべての開発者
+> **前提**: front matter とファイル命名は [`md-rule.md`](./md-rule.md) に従う。本書の `*.hm.md` はその規則に基づく。
 
 ---
 
@@ -13,8 +14,8 @@
 
 | ファイル | 命名ルール | 内容 | 例 |
 |---------|-----------|------|----|
-| **ガイド** | `{feature}_guide.md` | 概念解説・関数リファレンス・課題。**完成コードを含めない** | `file-upload-guide.md` |
-| **答案コード集** | `{feature}_answers.md` | 全コードの完成形。ファイル単位で整理 | `file-upload-answers.md` |
+| **ガイド** | `{feature}-guide.hm.md` | 概念解説・関数リファレンス・課題。**完成コードを含めない** | `file-upload-guide.hm.md` |
+| **答案コード集** | `{feature}-answers.hm.md` | 全コードの完成形。ファイル単位で整理 | `file-upload-answers.hm.md` |
 
 **補足**: 従来の `handbook.md` のような「解説＋コード一体型」を否定するものではない。学習スタイルに応じて選択できるようにするのが目的。
 
@@ -24,10 +25,10 @@
 
 ```markdown
 <!-- ガイドの冒頭 -->
-> **📝 答案コード集はこちら**: [{feature}_answers.md]({feature}_answers.md)（行き詰まったら参照）
+> **📝 答案コード集はこちら**: [{feature}-answers.hm.md]({feature}-answers.hm.md)（行き詰まったら参照）
 
 <!-- 答案コード集の冒頭 -->
-> **📖 学習ガイドはこちら**: [{feature}_guide.md]({feature}_guide.md)（先にガイドで学んでから挑戦推奨）
+> **📖 学習ガイドはこちら**: [{feature}-guide.hm.md]({feature}-guide.hm.md)（先にガイドで学んでから挑戦推奨）
 ```
 
 ---
@@ -233,7 +234,7 @@ export async function createFileRecord(data: { ... }) {
 ````markdown
 # {機能名} 答案コード集
 
-> **このファイルの使い方**: [学習ガイド]({feature}_guide.md) で学習を進め、行き詰まったら該当するフェーズの答案を参照してください。
+> **このファイルの使い方**: [学習ガイド]({feature}-guide.hm.md) で学習を進め、行き詰まったら該当するフェーズの答案を参照してください。
 
 ## 📋 フェーズ別コード一覧
 
@@ -271,28 +272,27 @@ export async function createFileRecord(data: { ... }) {
 
 | カテゴリ | 配置先 | 例 |
 |---------|--------|----|
-| アーキテクチャ解説 | `doc/materials/architecture/` | `doc/materials/architecture/system/app-overview.md` |
-| 環境構築手順 | `doc/materials/guide/` | `doc/materials/guide/environment-setup.md` |
-| 実装ガイド | `doc/materials/implementation/` | `doc/materials/implementation/file-upload-guide.md` |
-| UI/UX設計 | `doc/materials/design/` | `doc/materials/design/screen-requirements.md` |
+| アーキテクチャ解説 | `doc/materials/architecture/` | `doc/materials/architecture/system/app-overview.hm.md` |
+| 環境構築手順 | `doc/materials/guide/` | `doc/materials/guide/environment-setup.hm.md` |
+| 実装ガイド | `doc/materials/implementation/` | `doc/materials/implementation/file-upload-guide.hm.md` |
+| UI/UX設計 | `doc/materials/design/` | `doc/materials/design/screen-requirements.hm.md` |
 
-### 6.2 プレビューサーバーとの連携
+### 6.2 表示の確認
 
-- `doc/serve.js` は `doc/materials/` 以下のファイルを自動的に配信する。
-- ガイド作成後は `bash doc/serve.sh` でプレビューサーバーを起動し、ブラウザで表示を確認することを推奨する。
-- 新しいガイドは `doc/src/` のプレビューアプリから参照できるよう、必要に応じて `doc/src/script.js` のナビゲーションに追記してよい。
+- ガイド作成後は、エディタのMarkdownプレビューまたはGitホスティング上で表示を確認します。
+- コードブロック、図、画像、相対リンクが正しく表示されることを確認します。
 
 ### 6.3 従来のハンドブックがある場合
 
-従来のハンドブック（`*_handbook.md`）が存在する場合は、ガイド・答案コード集・ハンドブックの冒頭で相互リンクする：
+従来のハンドブック（`*-handbook.hm.md`）が存在する場合は、ガイド・答案コード集・ハンドブックの冒頭で相互リンクする：
 
 ```markdown
 <!-- ガイドの冒頭 -->
-> **📖 従来のハンドブックはこちら**: [{feature}_handbook.md]({feature}_handbook.md)（完全版・リファレンス向け）
+> **📖 従来のハンドブックはこちら**: [{feature}-handbook.hm.md]({feature}-handbook.hm.md)（完全版・リファレンス向け）
 
 <!-- ハンドブックの冒頭 -->
-> **📝 学習ガイドはこちら**: [{feature}_guide.md]({feature}_guide.md)（コードなしで学びたい方向け）
-> **📝 答案コード集はこちら**: [{feature}_answers.md]({feature}_answers.md)（実装例を確認したい方向け）
+> **📝 学習ガイドはこちら**: [{feature}-guide.hm.md]({feature}-guide.hm.md)（コードなしで学びたい方向け）
+> **📝 答案コード集はこちら**: [{feature}-answers.hm.md]({feature}-answers.hm.md)（実装例を確認したい方向け）
 ```
 
 ---
@@ -301,7 +301,8 @@ export async function createFileRecord(data: { ... }) {
 
 新しくガイドを作成するときは以下を確認する：
 
-### ガイド（`xxx_guide.md`）
+### ガイド（`xxx-guide.hm.md`）
+- [ ] front matter が md-rule.md に従っている
 - [ ] **見出し後の `<br>`**: H1/H2/H3 の直前、直後に `<br>` を入れて読みやすい行間を確保している
 - [ ] ガイドと答案コード集のリンクが冒頭にある
 - [ ] ロードマップ表がある
@@ -313,15 +314,17 @@ export async function createFileRecord(data: { ... }) {
 - [ ] ハマりどころが記載されている
 - [ ] エラー時の調べ方が記載されている
 
-### 答案コード集（`xxx_answers.md`）
+### 答案コード集（`xxx-answers.hm.md`）
+- [ ] front matter が md-rule.md に従っている
 - [ ] ガイドへのリンクが冒頭にある
 - [ ] フェーズ別コード一覧表がある
 - [ ] 全コードがファイルパス付きで掲載されている
 - [ ] コードはコピペして動く完成形である
 
-### 従来のハンドブック（`xxx_handbook.md`）
+### 従来のハンドブック（`xxx-handbook.hm.md`）
+- [ ] front matter が md-rule.md に従っている
 - [ ] 冒頭にガイドと答案コード集への案内がある（存在する場合）
 
 ### 配置・ナビゲーション
 - [ ] 適切な `doc/materials/` 配下のディレクトリに配置されている
-- [ ] プレビューサーバーで正しく表示されることを確認した
+- [ ] Markdownプレビューで正しく表示されることを確認した

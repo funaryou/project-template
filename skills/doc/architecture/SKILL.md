@@ -31,21 +31,23 @@ metadata:
 
 ## ファイル命名規則
 
+命名は `doc/rules/md-rule.md` に従う。ベース名は小文字 ASCII のケバブケースとし、AI が作成して人間が確認する文書には `.hm.md` を付ける。
+
 | 種類 | 命名パターン | 例 |
 | :--- | :--- | :--- |
-| 実装記録 | `impl_{feature_name}.md` | `impl_article_search.md` |
-| レビュー記録 | `review_{phase}_{topic}.md` | `review_phase4_auth.md` |
-| 手順書 | `phase{N}_{topic}_steps.md` | `phase5_cleanup_steps.md` |
-| 解説ガイド | `{topic}_guide.md` | `supabase_auth_guide.md` |
+| 実装記録 | `{feature-name}-impl.hm.md` | `article-search-impl.hm.md` |
+| レビュー記録 | `review-{phase}-{topic}.hm.md` | `review-phase4-auth.hm.md` |
+| 手順書 | `phase{N}-{topic}-steps.hm.md` | `phase5-cleanup-steps.hm.md` |
+| 解説ガイド | `{topic}-guide.hm.md` | `supabase-auth-guide.hm.md` |
 
 ## ドキュメント運用ルール
 
 1. **配置の原則**: 新しいドキュメントは必ず上記のディレクトリ構造に従って配置する。ルートディレクトリ（`doc/` 直下）にファイルを放置しない。
-2. **バージョン管理**: 各ドキュメントの H1 見出しの末尾に `[#N]` 形式でバージョンを記載する。内容を更新したらインクリメントする。
+2. **メタデータ**: 各ドキュメントの先頭に `doc/rules/md-rule.md` の front matter を付ける。バージョンは H1 ではなく front matter の `version` で管理する。
 3. **ルールの遵守**: `doc/RULE.md` および `doc/rules/` のフォーマットルールに従う。
 
 ## Guardrails
 
 - `doc/` 直下にファイルを置かない
-- バージョン番号のインクリメントを忘れない
+- front matter の `version` 更新を忘れない
 - 新しいカテゴリが必要な場合は先に `doc/RULE.md` を更新する

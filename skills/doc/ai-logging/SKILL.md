@@ -27,8 +27,8 @@ metadata:
 ## 保存ルール
 
 - **保存先**: `doc/materials/memo/ai-logs/`
-- **ファイル名**: `YYYY-MM-DD_<担当ModleName>_session.md`（日付を含める）
-- **フォーマット**: Markdown
+- **ファイル名**: `YYYY-MM-DD-<model>-session.ai.md`（例: `2026-11-22-gpt-5.3-codex-session.ai.md`）
+- **フォーマット**: Markdown（`doc/rules/md-rule.md` の front matter を付ける）
 - **粒度**: 1ファイル = 1セッション（会話が途切れたら新規ファイル）
 
 `memo.md`（一般メモ）とは異なり、会話の生ログに近い形式で保存して構いません。
@@ -42,6 +42,18 @@ metadata:
 ### 記録テンプレート
 
 ```markdown
+---
+title: "{YYYY-MM-DD} セッションログ"
+description: "{セッションの概要を一文で}"
+author: "{モデル名}"
+date: {YYYY-MM-DD}
+version: "1.0.0"
+status: draft
+tags:
+  - ai-log
+  - session
+---
+
 # {YYYY-MM-DD} セッションログ
 
 ## 対応内容

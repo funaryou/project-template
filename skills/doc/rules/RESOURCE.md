@@ -21,7 +21,8 @@ metadata:
 |---------|------|--------|
 | `doc/RULE.md` | プロジェクト全体のドキュメント構造・命名・運用ルール | 最優先 |
 | `doc/rules/RULE.md` | `doc/rules/` ディレクトリの定義とルールファイルのフォーマット | 高 |
-| `doc/rules/doc-guid-rule.md` | ガイド系ドキュメント（`*_guide.md` / `*_answers.md`）の具体的なフォーマットルール | 高（ガイド作成時） |
+| `doc/rules/md-rule.md` | front matter とファイル命名規則（`*.md` / `*.hm.md` / `*.ai.md`） | 高（全 Markdown 共通） |
+| `doc/rules/doc-guid-rule.md` | ガイド系ドキュメント（`*-guide.hm.md` / `*-answers.hm.md`）の具体的なフォーマットルール | 高（ガイド作成時） |
 
 ## ルールの優先順位
 
@@ -31,9 +32,10 @@ metadata:
 
 ## 適用タイミング
 
-- **ガイド系ドキュメントを作成するとき**: `docs/rules/doc-guid-rule.md` の全セクションに従うこと
-- **新しいルールを追加するとき**: `docs/rules/RULE.md` のフォーマットに従い、`docs/RULE.md` の Directory Responsibilities も更新すること
-- **ふだんのコーディング・設計**: `docs/RULE.md` の基本ルール（命名・配置・.gitignore 等）を遵守すること
+- **Markdown を作成するとき**: `doc/rules/md-rule.md` に従い、front matter とファイル命名（`.hm.md` / `.ai.md` / 小文字）を決める
+- **ガイド系ドキュメントを作成するとき**: `doc/rules/doc-guid-rule.md` の全セクションに従うこと
+- **新しいルールを追加するとき**: `doc/rules/RULE.md` のフォーマットに従い、`doc/RULE.md` の Directory Responsibilities も更新すること
+- **ふだんのコーディング・設計**: `doc/RULE.md` の基本ルール（命名・配置・.gitignore 等）を遵守すること
 
 ## リマインダー
 
